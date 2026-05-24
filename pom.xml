@@ -12,8 +12,8 @@
 	<artifactId>locamotos</artifactId>
 	<version>1.0.0.0</version>
 	<packaging>war</packaging>
-	<name/>
-	<description/>
+	<name>locamotos</name>
+	<description>Projeto final locamotos - bootcamp: Arquiteto(a) de Software - Pós graduação XPe</description>
 	<url/>
 	<licenses>
 		<license/>
