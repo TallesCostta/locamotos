@@ -19,15 +19,13 @@ import java.util.List;
 @RequestMapping("/motos")
 @RequiredArgsConstructor
 @Tag(name = "Motos", description = "Endpoints para gerenciamento de motos")
-class MotoController 
-{
+class MotoController {
     private final MotoService motoService;
 
     @Operation(summary = "Listar todas as motos", description = "Retorna uma lista contendo todas as motos cadastradas.")
     @ApiResponse(responseCode = "200", description = "Lista retornada com sucesso")
     @GetMapping
-    List<Moto> listarTodasMotos()
-    {
+    List<Moto> listarTodasMotos() {
         return motoService.listarTodasMotos();
     }
 
@@ -38,8 +36,7 @@ class MotoController
     })
     @GetMapping("/{id}")
     ResponseEntity<Moto> buscarMotoPorId(
-            @Parameter(description = "ID da moto que será buscada") @PathVariable @NotNull final Long id)
-    {
+            @Parameter(description = "ID da moto que será buscada") @PathVariable @NotNull final Long id) {
         return motoService.buscarMotoPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound()
@@ -50,16 +47,14 @@ class MotoController
     @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso")
     @GetMapping("/modelo/{modelo}")
     List<Moto> buscarMotoPorModelo(
-            @Parameter(description = "Termo para busca no modelo") @PathVariable @NotEmpty final String modelo)
-    {
+            @Parameter(description = "Termo para busca no modelo") @PathVariable @NotEmpty final String modelo) {
         return motoService.buscarMotoPorModelo(modelo);
     }
 
     @Operation(summary = "Contar inventário de motos", description = "Retorna a quantidade total de motos cadastradas no sistema.")
     @ApiResponse(responseCode = "200", description = "Contagem realizada com sucesso")
     @GetMapping("/inventario")
-    long contarMotosInventario()
-    {
+    long contarMotosInventario() {
         return motoService.contarMotosInventario();
     }
 
@@ -69,9 +64,27 @@ class MotoController
             @ApiResponse(responseCode = "400", description = "Dados inválidos ou placa já cadastrada")
     })
     @PostMapping
-    Moto salvarMoto(@RequestBody @NotNull final Moto moto)
-    {
+    Moto salvarMoto(@RequestBody @NotNull final Moto moto) {
         return motoService.salvarMoto(moto);
+    }
+
+    @Operation(summary = "Atualizar moto por ID", description = "Atualiza os dados de uma moto existente no sistema.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Moto atualizada com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Moto não encontrada para atualização")
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<Moto> atualizarMoto(@PathVariable Long id, @RequestBody Moto motoAtualizada) {
+        return motoService.buscarMotoPorId(id)
+                .map(motoExistente -> {
+                    motoExistente.setModelo(motoAtualizada.getModelo());
+                    motoExistente.setPlaca(motoAtualizada.getPlaca());
+                    motoExistente.setCilindrada(motoAtualizada.getCilindrada());
+                    motoExistente.setDisponivel(motoAtualizada.isDisponivel());
+                    Moto salvo = motoService.salvarMoto(motoExistente);
+                    return ResponseEntity.ok(salvo);
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Deletar moto por ID", description = "Remove uma moto do sistema através do seu ID.")
@@ -80,10 +93,8 @@ class MotoController
             @ApiResponse(responseCode = "404", description = "Moto não encontrada para deleção")
     })
     @DeleteMapping("/{id}")
-    ResponseEntity<Void> deletarMotoPorId(@Parameter(description = "ID da moto que será deletada") @PathVariable @NotNull final Long id)
-    {
-        if (!motoService.buscarMotoPorId(id).isPresent())
-        {
+    ResponseEntity<Void> deletarMotoPorId(@Parameter(description = "ID da moto que será deletada") @PathVariable @NotNull final Long id) {
+        if (!motoService.buscarMotoPorId(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
         motoService.deletarMoto(id);
