@@ -1,46 +1,46 @@
 # Projeto Locamotos
 
-Projeto final locamotos - bootcamp: Arquiteto(a) de Software - Pós graduação XPe.
+Projeto final locamotos - bootcamp: Arquiteto(a) de Software - PÃ³s graduaÃ§Ã£o XPe.
 
-Este projeto consiste em uma API REST para gerenciamento de uma frota de motocicletas, permitindo operações de CRUD (Create, Read, Update, Delete) e consultas específicas. A aplicação foi desenvolvida com base no ecossistema Spring Boot, seguindo as melhores práticas de arquitetura em camadas.
-
----
-
-## ? Tecnologias Utilizadas
-
-- **Java 17**: Versão da linguagem Java utilizada.
-- **Spring Boot**: Framework principal para criação da aplicação.
-- **Maven**: Gerenciador de dependências e build do projeto.
-- **Spring Web**: Para criação de endpoints REST.
-- **Spring Data JPA**: Para persistência de dados e abstração de queries SQL.
-- **H2 Database**: Banco de dados em memória para desenvolvimento e testes.
-- **Spring Security**: Para controle de acesso e segurança da API.
-- **Lombok**: Para redução de código boilerplate (getters, setters, construtores).
-- **Swagger (OpenAPI 3)**: Para documentação interativa e visual da API.
+Este projeto consiste em uma API REST para gerenciamento de uma frota de motocicletas, permitindo operaÃ§Ãµes de CRUD (Create, Read, Update, Delete) e consultas especÃ­ficas. A aplicaÃ§Ã£o foi desenvolvida com base no ecossistema Spring Boot, seguindo as melhores prÃ¡ticas de arquitetura em camadas.
 
 ---
 
-## ?? Como Executar o Projeto
+## Tecnologias Utilizadas
 
-### Pré-requisitos
+- **Java 17**: VersÃ£o da linguagem Java utilizada.
+- **Spring Boot**: Framework principal para criaÃ§Ã£o da aplicaÃ§Ã£o.
+- **Maven**: Gerenciador de dependÃªncias e build do projeto.
+- **Spring Web**: Para criaÃ§Ã£o de endpoints REST.
+- **Spring Data JPA**: Para persistÃªncia de dados e abstraÃ§Ã£o de queries SQL.
+- **H2 Database**: Banco de dados em memÃ³ria para desenvolvimento e testes.
+- **Spring Security**: Para controle de acesso e seguranÃ§a da API.
+- **Lombok**: Para reduÃ§Ã£o de cÃ³digo boilerplate (getters, setters, construtores).
+- **Swagger (OpenAPI 3)**: Para documentaÃ§Ã£o interativa e visual da API.
+
+---
+
+## Como Executar o Projeto
+
+### PrÃ©-requisitos
 - JDK 17 ou superior instalado.
 - Maven (opcional, pois o projeto utiliza o Maven Wrapper).
 
-### Passos para Execução
-1. Clone este repositório.
+### Passos para ExecuÃ§Ã£o
+1. Clone este repositÃ³rio.
 2. Abra um terminal na raiz do projeto.
-3. Execute o seguinte comando para iniciar a aplicação:
+3. Execute o seguinte comando para iniciar a aplicaÃ§Ã£o:
 
    ```bash
    ./mvnw spring-boot:run
    ```
-A aplicação estará disponível em `http://localhost:8080/locamotos`.
+A aplicaÃ§Ã£o estarÃ¡ disponÃ­vel em `http://localhost:8080/locamotos`.
 
 ---
 
-## ? Endpoints Disponíveis
+## Endpoints DisponÃ­veis
 
-A API pode ser explorada de forma interativa através do Swagger UI.
+A API pode ser explorada de forma interativa atravÃ©s do Swagger UI.
 
 - **Swagger UI**: [http://localhost:8080/locamotos/swagger-ui/index.html](http://localhost:8080/locamotos/swagger-ui.html)
 
@@ -54,13 +54,13 @@ A API pode ser explorada de forma interativa através do Swagger UI.
 
 ---
 
-## ?? Arquitetura
+## Arquitetura
 
 O projeto segue uma **Arquitetura em Camadas (MVC)**, com as seguintes responsabilidades:
 
-- **Controller**: Camada de apresentação que recebe as requisições HTTP e as direciona.
-- **Service**: Camada de negócio que orquestra as operações e valida as regras.
-- **Repository**: Camada de dados que interage com o banco de dados através do Spring Data JPA.
+- **Controller**: Camada de apresentaÃ§Ã£o que recebe as requisiÃ§Ãµes HTTP e as direciona.
+- **Service**: Camada de negÃ³cio que orquestra as operaÃ§Ãµes e valida as regras.
+- **Repository**: Camada de dados que interage com o banco de dados atravÃ©s do Spring Data JPA.
 - **Model**: Entidades que representam as tabelas do banco de dados.
-- **Exception**: Camada para tratamento global de exceções, retornando erros HTTP padronizados.
-- **Config**: Configurações de segurança e comportamento da aplicação.
+- **Exception**: Camada para tratamento global de exceÃ§Ãµes, retornando erros HTTP padronizados.
+- **Config**: ConfiguraÃ§Ãµes de seguranÃ§a e comportamento da aplicaÃ§Ã£o.
